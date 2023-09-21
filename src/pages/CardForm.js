@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import CardBack from "../components/CardBack";
 import CardFront from "../components/CardFront";
+import toast, { Toaster } from "react-hot-toast";
 
 const CardForm = () => {
   const [cardholderName, setCardholderName] = useState("");
@@ -16,8 +17,6 @@ const CardForm = () => {
   const [expiryYearError, setExpiryYearError] = useState("");
   const [cvcError, setCvcError] = useState("");
 
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);
-
   const [cardDetails, setCardDetails] = useState({
     name: "",
     cardNumber: "",
@@ -29,7 +28,7 @@ const CardForm = () => {
   const submitHandler = (e) => {
     e.preventDefault();
     if (isValid()) {
-      console.log(cardDetails);
+      toast.success("Card Details Submitted!");
     }
   };
 
@@ -102,7 +101,6 @@ const CardForm = () => {
       isExpiryYearValid &&
       isCvcValid
     ) {
-      console.log("inside setCardDetails");
       setCardDetails({
         name: cardholderName,
         cardNumber: cardNumber,
@@ -110,7 +108,6 @@ const CardForm = () => {
         expiryYear: cardYear,
         cvc: cardCVC,
       });
-      console.log(cardDetails);
       return true;
     }
     return false;
@@ -119,15 +116,12 @@ const CardForm = () => {
   const handleCardNumberChange = (inputValue) => {
     // Remove any non-numeric characters from the input
     const numericValue = inputValue.replace(/\D/g, "");
-    console.log("numericValue: ", numericValue);
 
     // Limit the input to a maximum of 16 digits
     const limitedValue = numericValue.slice(0, 16);
-    console.log("limitedValue: ", limitedValue);
 
     // Format the limited value with spaces every 4 digits
     const formattedValue = limitedValue.replace(/(\d{4})(?=\d)/g, "$1 ");
-    console.log("formattedValue: ", formattedValue);
 
     // Update the cardNumber state with the formatted value
     setCardNumber(formattedValue);
@@ -153,6 +147,7 @@ const CardForm = () => {
 
   return (
     <div className="container">
+      <Toaster />
       <div className="card-components"></div>
 
       <CardFront cardDetails={cardDetails} className="cardface" />
@@ -219,10 +214,7 @@ const CardForm = () => {
                 placeholder="e.g. 123"
                 onChange={(e) => handleCardCVCChange(e.target.value)}
               ></input>
-              <p className="error">
-                {cvcError.length > 0 ? cvcError : ""}
-                {console.log(cvcError)}
-              </p>
+              <p className="error">{cvcError.length > 0 ? cvcError : ""}</p>
             </div>
           </div>
 
