@@ -1,6 +1,262 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto&display=swap');
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+
+*{
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: "Inter", "Roboto";
+}
+
+.container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-components{
+  width: 40%;
+  background-image: url("../assets//background.png");
+  background-size: cover;
+  height: 100%;
+  position: relative; 
+}
+
+.card-form{
+  width: 60%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form{
+  height: 60%;
+  width: 50%;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+form{
+  height: 100%;
+}
+
+.card-form p {
+  color: red;
+}
+
+.card-form span {
+  color: red;
+}
+
+input{
+  padding-left: 10px;
+  line-height: 100%;
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 1rem;
+
+}
+
+.input-field{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card-form label {
+  color: #220930;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.input-field input {
+  border: solid 1px gray;
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  height: 2.5rem;
+  border-radius: 0.5rem;
+}
+
+.expiry-cvc{
+  display: flex;
+}
+
+.expiry{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 0.5rem;
+
+}
+
+.expiry-inputs{
+  width: 100%;
+}
+
+.expiry-inputs input{
+  width: 40%;
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  margin-right: 5%;
+}
+
+.expiry-error{
+  width: 100%;
+}
+
+.expiry-error span{
+  width: 40%;
+  margin-right: 5%;
+
+}
+
+.cvc{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  gap: 0.5rem;
+
+}
+
+.cvc input{
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  height: 2.5rem;
+  border-radius: 0.5rem;
+  margin-right: 5%;
+}
+
+button{
+  border: 1px solid rgba(0, 0, 0, 0.13);
+  height: 3rem;
+  border-radius: 0.5rem;
+  color: white;
+  background-color: #220930;
+}
+
+.cardface, .card1, .card2{
+  position: absolute;
+  z-index: 10;
+}
+
+.card1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 20px;
+  background-image: url('../assets/cardfront.png');
+  background-size: cover;
+  width: 450px;
+  height: 250px;
+  border-radius: 0.8rem;
+  top: 10%;
+  left: 15%;
+  padding-bottom: 10px;
+}
+
+
+.card1-div1 {
+  display: flex;
+  justify-content: center;
+  align-content: center; 
+  color: #FFF;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 4.68px;
+}
+
+.card1-div2 {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 0.8em;
+  gap: 5rem;
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 2.47px;
+}
+
+.card2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url('../assets/cardback.png');
+  background-size: cover;
+  width: 450px;
+  height: 250px;
+  border-radius: 0.8rem;
+  bottom: 10%;
+  left: 20%;
+}
+
+.card2-div1 {
+  display: flex;
+  flex-direction: column;
+  margin-top: 2rem;
+  background-color: black;
+  width: 99%;
+  height: 50px;
+}
+
+.card2-div2 {
+  background-color: #ADB6BF;
+  border-radius: 0.4rem;
+  margin-top: 2rem;
+  width: 75%;
+  height: 50px;
+  color: #FFF;
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.card2-div2 > p {
+  padding-right: 1rem;
+  font-size: 1rem;
+}
+
+::placeholder {
+  color: #BBB9BC;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: 1.875px;
+}
+
+.error{
+  color: #F81212;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  padding: 0.5rem;
 }

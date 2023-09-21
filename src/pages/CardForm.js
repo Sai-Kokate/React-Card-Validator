@@ -152,77 +152,84 @@ const CardForm = () => {
   };
 
   return (
-    <>
-      <form onSubmit={submitHandler}>
-        <div>
-          <label htmlFor="name"> CARDHOLDER NAME</label>
-          <input
-            id="name"
-            value={cardholderName}
-            type="text"
-            placeholder="e.g. Jane Appleseed"
-            onChange={(e) => setCardholderName(e.target.value)}
-          ></input>
-          <p>{nameError ? nameError : ""}</p>
-        </div>
+    <div className="container">
+      <div className="card-components"></div>
 
-        <div>
-          <label htmlFor="card-number">CARD NUMBER</label>
-          <input
-            id="card-number"
-            value={cardNumber}
-            type="text"
-            placeholder="e.g. 1234 5678 9123 0000"
-            onChange={(e) => handleCardNumberChange(e.target.value)}
-            maxLength="19" // Set the maximum length to 19 characters (16 digits + 3 spaces)
-          ></input>
-          <p>{cardNumberError ? cardNumberError : ""}</p>
-        </div>
+      <CardFront cardDetails={cardDetails} className="cardface" />
+      <CardBack cardCVC={cardDetails.cvc} className="cardface" />
 
-        <div>
-          <label>EXP. DATE (MM/YY)</label>
-          <input
-            id="card-month"
-            value={cardMonth}
-            type="number"
-            placeholder="MM"
-            onChange={(e) => handleCardMonthChange(e.target.value)}
-          ></input>
+      <div className="card-form">
+        <form onSubmit={submitHandler} className="form">
+          <div className="input-field">
+            <label htmlFor="name"> CARDHOLDER NAME</label>
+            <input
+              id="name"
+              value={cardholderName}
+              type="text"
+              placeholder="e.g. Jane Appleseed"
+              onChange={(e) => setCardholderName(e.target.value)}
+            ></input>
+            <p className="error">{nameError ? nameError : ""}</p>
+          </div>
 
-          <input
-            id="card-year"
-            value={cardYear}
-            type="number"
-            placeholder="YY"
-            onChange={(e) => handleCardYearChange(e.target.value)}
-          ></input>
+          <div className="input-field">
+            <label htmlFor="card-number">CARD NUMBER</label>
+            <input
+              id="card-number"
+              value={cardNumber}
+              type="text"
+              placeholder="e.g. 1234 5678 9123 0000"
+              onChange={(e) => handleCardNumberChange(e.target.value)}
+              maxLength="19" // Set the maximum length to 19 characters (16 digits + 3 spaces)
+            ></input>
+            <p className="error">{cardNumberError ? cardNumberError : ""}</p>
+          </div>
 
-          <span>{expiryMonthError ? expiryMonthError : ""}</span>
+          <div className="expiry-cvc">
+            <div className="expiry">
+              <label>EXP. DATE (MM/YY)</label>
+              <div className="expiry-inputs">
+                <input
+                  id="card-month"
+                  value={cardMonth}
+                  type="number"
+                  placeholder="MM"
+                  onChange={(e) => handleCardMonthChange(e.target.value)}
+                ></input>
 
-          <span>{expiryYearError ? expiryYearError : ""}</span>
-        </div>
+                <input
+                  id="card-year"
+                  value={cardYear}
+                  type="number"
+                  placeholder="YY"
+                  onChange={(e) => handleCardYearChange(e.target.value)}
+                ></input>
+              </div>
+              <div className="expiry-error error">
+                <span>{expiryMonthError ? expiryMonthError : ""}</span>
+                <span>{expiryYearError ? expiryYearError : ""}</span>
+              </div>
+            </div>
+            <div className="cvc">
+              <label htmlFor="card-cvc">CVC</label>
+              <input
+                id="card-cvc"
+                value={cardCVC}
+                type="number"
+                placeholder="e.g. 123"
+                onChange={(e) => handleCardCVCChange(e.target.value)}
+              ></input>
+              <p className="error">
+                {cvcError.length > 0 ? cvcError : ""}
+                {console.log(cvcError)}
+              </p>
+            </div>
+          </div>
 
-        <div>
-          <label htmlFor="card-cvc">CVC</label>
-          <input
-            id="card-cvc"
-            value={cardCVC}
-            type="number"
-            placeholder="e.g. 123"
-            onChange={(e) => handleCardCVCChange(e.target.value)}
-          ></input>
-          <p>
-            {cvcError.length > 0 ? cvcError : ""}
-            {console.log(cvcError)}
-          </p>
-        </div>
-
-        <button type="submit">Confirm</button>
-      </form>
-
-      <CardFront cardDetails={cardDetails} />
-      <CardBack cardCVC={cardDetails.cvc} />
-    </>
+          <button type="submit">Confirm</button>
+        </form>
+      </div>
+    </div>
   );
 };
 
